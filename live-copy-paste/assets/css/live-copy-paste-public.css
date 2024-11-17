@@ -48,7 +48,7 @@ a.bdt-magic-copy-btn {
     text-transform: uppercase;
     text-decoration: none;
     overflow: hidden;
-    z-index: 1;
+    z-index: 999;
     transition: all .3s cubic-bezier(0.26, 0.75, 0.25, 1);
     font-weight: 700;
     animation: text-pulse 1s infinite;
