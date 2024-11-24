@@ -24,29 +24,24 @@
 
     BdThemesLiveCopyBtn: function () {
       $(this._elItem).each(function () {
-        console.log('BdThemesLiveCopyBtn');
 
         var $this = $(this);
-        var hasContent = $.trim($this.find(".elementor-widget-wrap").html()) || $.trim($this.find(".e-con-inner").html() || $.trim($this.find(".e-child").html()));
-
-        
+        var hasContent = $.trim($this.find(".elementor-widget-wrap").html()) || $.trim($this.find(".e-con-inner").html() || $.trim($this.find(".e-child").html()) || $.trim($this.find(".elementor-section-wrap").html()) || $.trim($this.find(".elementor-column-wrap").html()) || $.trim($this.find(".elementor-container").html()) || $.trim($this.find(".elementor-row").html()) || $.trim($this.find(".elementor-column").html()) || $.trim($this.find(".elementor-element").html()));
 
         // Simplified condition
-        var isEligible = $this.closest('[data-elementor-type="wp-page"]').length > 0 &&
+        var isEligible = $this.closest('[data-elementor-type="wp-page"], [data-elementor-type="wp-post"]').length > 0 &&
           ($this.hasClass('elementor-element') || $this.hasClass('elementor-section')) &&
           !$this.hasClass('magic-button-disabled-yes') &&
           hasContent;
 
         if (isEligible) {
-          $this.addClass("magic-button-enabled-yesxxxxx");
-
           if (live_copy_settings_control.only_specific_section == 1) {
             if ($this.closest("section").hasClass("magic-button-enabled-yes") || $this.hasClass("magic-button-enabled-yes")) {
               $this.append(
                 '<div class="bdt-magic-copy-item"><a href="javascript:void(0)" class="bdt-magic-copy-btn">Live Copy</a><span aria-label="Click live copy button to copy this block." data-microtip-position="left" role="tooltip" class="bdt-magic-copy-info"><span class="bdt-magic-copy-icon"></span></span></div>'
               );
             }
-          } else {
+          }else {
             $this.append(
               '<div class="bdt-magic-copy-item"><a href="javascript:void(0)" class="bdt-magic-copy-btn">Live Copy</a><span aria-label="Click live copy button to copy this block." data-microtip-position="left" role="tooltip" class="bdt-magic-copy-info"><span class="bdt-magic-copy-icon"></span></span></div>'
             );

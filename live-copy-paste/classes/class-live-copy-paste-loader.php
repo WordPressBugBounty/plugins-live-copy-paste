@@ -9,8 +9,6 @@ if (!class_exists('LiveCopyPasteLoader')) {
 
         private static $_instance = null;
 
-        // const VERSION = VERSION;
-
         const MINIMUM_PHP_VERSION = '7.0';
 
         const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
@@ -170,7 +168,6 @@ if (!class_exists('LiveCopyPasteLoader')) {
 
         static private function define_constants() {
             if (!defined('ABSPATH')) exit; // Exit if accessed directly
-            define('BDT_LCP_VER', VERSION);
             define('BDT_LCP_FILE', trailingslashit(dirname(dirname(__FILE__))) . 'live-copy-paste.php');
             define('BDT_LCP_DIR', plugin_dir_path(BDT_LCP_FILE));
             define('BDT_LCP_DIR_URL', plugin_dir_url(__DIR__));

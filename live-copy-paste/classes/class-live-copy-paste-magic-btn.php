@@ -16,12 +16,16 @@ if ( ! class_exists( 'LiveCopyPasteMagicBtn' ) ) {
 			$this->enqueue_scripts();
 		}
 		public function enqueue_styles() {
-			wp_enqueue_style( 'live-copy-paste-css', BDT_LCP_DIR_URL . 'assets/css/live-copy-paste-public.css', array(), BDT_LCP_VER, 'all' );
+			wp_register_style( 'live-copy-paste-css', BDT_LCP_DIR_URL . 'assets/css/live-copy-paste-public.css', array(), BDT_LCP_VER, 'all' );
+			wp_enqueue_style( 'live-copy-paste-css' );
 		}
 
 		public function enqueue_scripts() {
-			wp_enqueue_script( 'live-copy-paste-storage-js', BDT_LCP_DIR_URL . 'assets/js/xdLocalStorage.js', [], BDT_LCP_VER, true );
-			wp_enqueue_script( 'live-copy-paste-scripts-js', BDT_LCP_DIR_URL . 'assets/js/live-copy-paste-public.js', [ 'jquery', 'live-copy-paste-storage-js' ], BDT_LCP_VER, true );
+			wp_register_script( 'live-copy-paste-storage-js', BDT_LCP_DIR_URL . 'assets/js/xdLocalStorage.js', [], BDT_LCP_VER, true );
+			wp_register_script( 'live-copy-paste-scripts-js', BDT_LCP_DIR_URL . 'assets/js/live-copy-paste-public.js', [ 'jquery', 'live-copy-paste-storage-js' ], BDT_LCP_VER, true );
+
+			wp_enqueue_script( 'live-copy-paste-storage-js' );
+			wp_enqueue_script( 'live-copy-paste-scripts-js' );
 
 			wp_localize_script( 'live-copy-paste-scripts-js', 'live_copy_settings_control', [ 
 				'only_login_users'      => get_option( 'lcp_enable_magic_copy_btn_login_user' ),
@@ -70,7 +74,6 @@ if ( ! class_exists( 'LiveCopyPasteMagicBtn' ) ) {
 			if ( isset( $_REQUEST ) ) {
 				$post_id   = sanitize_text_field( $_REQUEST['post_id'] );
 				$widget_id = sanitize_text_field( $_REQUEST['widget_id'] );
-				// $nonce     = isset( $_REQUEST['security'] ) ? $_REQUEST['security'] : '';
 				$nonce = wp_create_nonce( 'live-copy-paste-magic' );
 
 				if ( ! wp_verify_nonce( $nonce, 'live-copy-paste-magic' ) ) {
@@ -123,8 +126,6 @@ if ( ! class_exists( 'LiveCopyPasteMagicBtn' ) ) {
 
 			$widget_data['widget_data'] = $this->find_element_recursive( $metaData, $widget_id );
 			$widget_data['copy_data']   = $this->find_element_recursive_2( $metaData, $widget_id );
-
-			// $widget_data = $this->find_element_recursive($metaData, $widget_id);
 
 			return $widget_data;
 		}

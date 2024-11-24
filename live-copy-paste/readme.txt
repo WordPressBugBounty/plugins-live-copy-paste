@@ -2,14 +2,12 @@
 Contributors: bdthemes, selimmw, bdkoder, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
 Tags: elementor, cross domain, copy paste, duplicate, elementor addons
-Stable tag: 1.4.0
-Requires PHP: 7.4.0
+Stable tag: 1.4.2
+R4quires PHP: 7.4.0
 Requires at least: 5.0.0
-Tested up to: 6.7
+Tested up to: 6.7.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Elementor requires at least: 3.0.0
-Elementor tested up to: 3.21.4
 
 With our Live Copy Paste plugin, import/paste page sections from Elementor landing pages and Ready templates with one click for instant web design.
 
@@ -95,12 +93,16 @@ e.g.
 
 == Changelog ==
 
-= 1.4.0 [17th november 2024]
+= 1.4.2 [24th November 2024] =
+
+* Fixed: Invisible Button issue fixed for inner container
+
+= 1.4.0 [17th November 2024] =
 
 * Improved: System improved
 * Fixed: Invisible Button issue fixed for inner container
 
-= 1.3.4 [7th May 2024]
+= 1.3.4 [7th May 2024] =
 
 * Fixed: Invisible Button issue fixed
 
