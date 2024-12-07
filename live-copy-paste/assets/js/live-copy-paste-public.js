@@ -16,7 +16,7 @@
     //global properties
     globalSelector: function (e) {
       this._document = $(document);
-      this._elItem = this._document.find('.elementor-element.e-con, .elementor-section.elementor-top-section');
+      this._elItem = this._document.find('[data-elementor-type="wp-page"] > [data-element_type="container"], [data-elementor-type="wp-post"] > [data-element_type="container"], [data-elementor-type="wp-page"] > [data-element_type="section"], [data-elementor-type="wp-post"] > [data-element_type="section"]');
       if (this._elItem.length === 0) {
         this._elItem = this._document.find('.elementor-section.elementor-top-section');
       }
@@ -26,12 +26,15 @@
       $(this._elItem).each(function () {
 
         var $this = $(this);
-        var hasContent = $.trim($this.find(".elementor-widget-wrap").html()) || $.trim($this.find(".e-con-inner").html() || $.trim($this.find(".e-child").html()) || $.trim($this.find(".elementor-section-wrap").html()) || $.trim($this.find(".elementor-column-wrap").html()) || $.trim($this.find(".elementor-container").html()) || $.trim($this.find(".elementor-row").html()) || $.trim($this.find(".elementor-column").html()) || $.trim($this.find(".elementor-element").html()));
+        var hasContent = $.trim($this.find(".elementor-widget-wrap").html()) || $.trim($this.find(".e-con-inner").html() || $.trim($this.find(".e-child").html()) || $.trim($this.find(".elementor-section-wrap").html()) || $.trim($this.find(".elementor-column-wrap").html()) || $.trim($this.find(".elementor-container").html()) || $.trim($this.find(".elementor-row").html()) || $.trim($this.find(".elementor-column").html()) || $.trim($this.find(".elementor-element")));
 
+        $('.magic-button-disabled-no').find('.elementor-element').removeClass("magic-button-disabled-yes");
+        
         // Simplified condition
         var isEligible = $this.closest('[data-elementor-type="wp-page"], [data-elementor-type="wp-post"]').length > 0 &&
-          ($this.hasClass('elementor-element') || $this.hasClass('elementor-section')) &&
-          !$this.hasClass('magic-button-disabled-yes') &&
+          ($this.hasClass('elementor-element') || $this.hasClass('elementor-section') || $this.attr('data-element_type') === 'container') &&
+          !$this.closest('[data-elementor-type="wp-page"]').hasClass('magic-button-disabled-yes') &&
+          !$this.closest('[data-elementor-type="wp-post"]').hasClass('magic-button-disabled-yes') &&
           hasContent;
 
         if (isEligible) {
@@ -42,10 +45,10 @@
               );
             }
           }else {
-            $this.append(
-              '<div class="bdt-magic-copy-item"><a href="javascript:void(0)" class="bdt-magic-copy-btn">Live Copy</a><span aria-label="Click live copy button to copy this block." data-microtip-position="left" role="tooltip" class="bdt-magic-copy-info"><span class="bdt-magic-copy-icon"></span></span></div>'
-            );
-          }
+              $this.append(
+                '<div class="bdt-magic-copy-item"><a href="javascript:void(0)" class="bdt-magic-copy-btn">Live Copy</a><span aria-label="Click live copy button to copy this block." data-microtip-position="left" role="tooltip" class="bdt-magic-copy-info"><span class="bdt-magic-copy-icon"></span></span></div>'
+              );
+            }
 
           $this.find(".bdt-magic-copy-item").hover(
             function () {

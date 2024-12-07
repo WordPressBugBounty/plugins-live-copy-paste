@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, bdkoder, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
 Tags: elementor, cross domain, copy paste, duplicate, elementor addons
-Stable tag: 1.4.2
+Stable tag: 1.4.5
 R4quires PHP: 7.4.0
 Requires at least: 5.0.0
 Tested up to: 6.7.1
@@ -92,6 +92,10 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.5 [7th December 2024] =
+
+* Improved: System improved
 
 = 1.4.2 [24th November 2024] =
 
