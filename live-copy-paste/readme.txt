@@ -2,12 +2,14 @@
 Contributors: bdthemes, selimmw, bdkoder, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
 Tags: elementor, cross domain, copy paste, duplicate, elementor addons
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 R4quires PHP: 7.4.0
 Requires at least: 5.0.0
 Tested up to: 6.7.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Elementor requires at least: 3.22
+Elementor tested up to: 3.27.3
 
 With our Live Copy Paste plugin, import/paste page sections from Elementor landing pages and Ready templates with one click for instant web design.
 
@@ -92,6 +94,10 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.6 [9th February 2025] =
+
+* Updated: Made Compatible with Elementor 3.27
 
 = 1.4.5 [7th December 2024] =
 
