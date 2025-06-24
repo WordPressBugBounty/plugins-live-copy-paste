@@ -1,15 +1,15 @@
 === Live Copy Paste Elementor Addon - Cross Domain Copy Paste, Copy Local to Cloud, Copy Paste Elementor Section ===
-Contributors: bdthemes, selimmw, bdkoder, mohammaadfarid, abutalib
+Contributors: bdthemes, selimmw, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
 Tags: elementor, cross domain, copy paste, duplicate, elementor addons
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 R4quires PHP: 7.4.0
 Requires at least: 5.0.0
-Tested up to: 6.8
+Tested up to: 6.8.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.28.3
+Elementor tested up to: 3.29.2
 
 With our Live Copy Paste plugin, import/paste page sections from Elementor landing pages and Ready templates with one click for instant web design.
 
@@ -94,6 +94,11 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.8 [24th June 2025] =
+
+* Updated: Made Compatible with Elementor 3.29.2
+* Fixed: DCI Notice transition issue fixed
 
 = 1.4.7 [21th April 2025] =
 
