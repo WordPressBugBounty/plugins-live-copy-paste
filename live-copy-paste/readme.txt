@@ -1,67 +1,68 @@
-=== Live Copy Paste Elementor Addon - Cross Domain Copy Paste, Copy Local to Cloud, Copy Paste Elementor Section ===
+=== Live Copy Paste Elementor Addons ===
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
-Tags: elementor, cross domain, copy paste, duplicate, elementor addons
-Stable tag: 1.4.8
+Tags: elementor, cross domain, copy and paste, duplicate, elementor addons
+Stable tag: 1.4.9
 R4quires PHP: 7.4.0
-Requires at least: 5.0.0
+Requires at least: 6.0
 Tested up to: 6.8.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.29.2
+Elementor tested up to: 3.30.2
 
 With our Live Copy Paste plugin, import/paste page sections from Elementor landing pages and Ready templates with one click for instant web design.
 
 == Description ==
 
-Are you asking for a way to quickly import web pages from one Elementor website to another cross domain ?
-Yes, there is a way. Our LIVE COPY PASTE plugin is the perfect solution where you can import any kind of web page from multiple domains in under 5 seconds. Just copy and paste!
+Need a quick way to copy Elementor designs from one website to another? 
 
-Full Page, Full Post, WooCommerce Product, EDD Product, etc Copy Paste feature coming soon...
+That’s exactly what **Live Copy Paste** does.
+
+You can copy any section, widget, or even a full page from one site and paste it into another. No exporting or importing is needed.
+
+This is super helpful if you're working on multiple sites, building client projects, or moving designs from a staging site to a live site. It saves time and keeps your designs looking exactly how you made them.
 
 https://youtu.be/KWxbZfPIcqU
 
-= This is the Real Deal that you need =
+= The Real Time-Saver for Elementor Users =
 
-The Live Copy Paste is a feature developed to work with Elementor Page Builder. Here, users get to access a secret control over the UI that allows them to import/export live pages, sections, widgets, and any kind of designs (including all modifications) in one click.
+Live Copy Paste is built to work smoothly with Elementor Page Builder. It lets you copy and paste full pages, sections, and widgets with all your styles and settings in just one click.
 
-This is where it gets interesting.
+But there’s more.
 
-Live Copy Paste does not only work for live pages but also works for static or dynamic websites. That includes demo pages, section blocks, ready templates, and lots more. Using this addon, you can copy the layout from both the front end and backend.
-This gives the users maximum flexibility and is convenient to use anywhere anytime.
+It works with both live pages and static or dynamic content. You can copy from demo pages, template blocks, or saved sections. Whether you're on the front end or inside the Elementor editor, it's easy to use and gives you full control over your design workflow.
 
-Live Copy Paste is a cross-domain feature that only we are selling for free.
+Best of all, it works across different domains. And it's completely free to use.
+
 
 
 == Features ==
 
-= Cross Domain Copy Paste- =
+= Cross-Domain Copy and Paste =
 
-Live Copy Paste empowers you to import web design from one website built with Elementor to another website instantly. Best for web designers to boost their work output.
+With Live Copy Paste, you can instantly copy designs from one Elementor website and paste them into another. It’s a fast and simple way to move layouts across sites without needing to export or import files. 
 
-= Page Duplicator- =
+This is especially helpful for designers and developers working on multiple projects.
 
-Duplicate pages, posts, and templates from your WordPress dashboard with a simple click. The duplicator feature is further enhanced to make copies of designs, product pages, testimonials, and everything that you need on WordPress.
+= Page and Template Duplicator =
+
+Easily duplicate pages, posts, and templates right from your WordPress dashboard. This feature also supports copying product pages, testimonials, and other common layouts, making it easier to reuse your work and stay consistent across your site.
+
+(Full Page, Full Post, WooCommerce Product, EDD Product, etc Copy Paste feature coming soon)
 
 
-= Best Use For =
+= Who it's for =
 
-The Live Copy Paste option is designed for our global users who want to work around WordPress to easily design web fronts.
-In most cases, the UI designers need to transfer the creative designs from the staging site to the main domain. Using the basic methods (compiling zip files), the layout often breaks as well as bugs happen.
+This plugin is great for:
 
-That’s not all, if you need to import any design quickly, you can’t do that here.
+- Designers and developers
+- Agencies and freelancers
+- Anyone using Elementor to build WordPress sites
 
-But with Live Copy Paste installed on your WordPress site, the problem goes away. There’s no need to wait for a template import/export. You can directly click over any page, section, or widget to copy that and paste it to the target site instantly.
+If you've ever had to rebuild a layout or deal with broken templates manually, this will make your life much easier.
 
-= Requirements of Use =
-
-To use Live Copy Paste on your website, you need to have
-
-- WordPress installation (free)
-- Elementor Website Builder plugin (free)
-- Live Copy Paste installation (free)
-- [Watch this quick video to see how to use it](https://www.youtube.com/watch?v=lqTtjf0a6yQ)
+**Start using Live Copy Paste today and build Elementor websites faster, with less hassle.**
 
 == Check out our other Addons 👑 ==
 
@@ -94,6 +95,10 @@ e.g.
 
 
 == Changelog ==
+
+= 1.4.9 [15th July 2025] =
+
+* Updated: Made Compatible with Elementor 3.30.2
 
 = 1.4.8 [24th June 2025] =
 
