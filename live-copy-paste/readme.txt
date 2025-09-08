@@ -2,16 +2,16 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 6.8.2
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Elementor requires at least: 3.22
-Elementor tested up to: 3.31.1
+Elementor tested up to: 3.31.3
 
-Live Copy Paste follows WordPress best practices, uses minimal resources, loads scripts only when needed, and works seamlessly with Elementor.
+The ultimate Elementor addon for cross-domain copying, magic copy buttons, and instant page duplication. Build websites faster with one-click design transfer!
 
 == Description ==
 
@@ -69,7 +69,7 @@ https://youtu.be/KWxbZfPIcqU
 
 ### 💪 Built for Performance & Reliability
 
-Live Copy Paste is engineered with WordPress best practices and optimized for performance. The plugin uses minimal resources, loads scripts only when needed, and integrates seamlessly with Elementor's native functionality.
+Live Copy Paste follows WordPress best practices, uses minimal resources, loads scripts only when needed, and works seamlessly with Elementor.
 
 **🔄 Always Up-to-Date** - Regular updates ensure compatibility with the latest WordPress and Elementor versions.
 
@@ -159,6 +159,10 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 5. Advanced section controls for specific magic button targeting
 
 == Changelog ==
+
+= 1.4.11 [8th September 2025] =
+
+* Fixed: DCI Notice removed for security reason
 
 = 1.4.10 [10th August 2025] =
 
