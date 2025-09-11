@@ -58,6 +58,7 @@ if (!class_exists('BdThemes_Duplicator')) :
              */
                 $bdt_args = [
                     'post_status'    => 'draft',
+                    /* translators: %1$s: original post title */
                     'post_title'     => sprintf(__('%1$s - [Duplicated]', 'live-copy-paste'), $bdt_post->post_title),
                     'post_type'      => $bdt_post->post_type,
                     'post_name'      => $bdt_post->post_name,
@@ -137,7 +138,7 @@ if (!class_exists('BdThemes_Duplicator')) :
 
                 exit;
             } else {
-                wp_die('Failed. Not Found Post: ' . $bdt_post_id);
+                wp_die('Failed. Not Found Post: ' . esc_html($bdt_post_id));
             }
         }
 

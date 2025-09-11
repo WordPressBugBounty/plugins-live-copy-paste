@@ -28,7 +28,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
             $element->start_controls_section(
                 '_section_live_copy_paste',
                 [
-                    'label'         => __('Live Copy Paste'),
+                    'label'         => __('Live Copy Paste', 'live-copy-paste'),
                     'tab'           => Controls_Manager::TAB_ADVANCED
                 ]
             );
@@ -38,7 +38,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                 $element->add_control(
                     'live_copy_paste_magic_btn_switcher',
                     [
-                        'label'         => __('Enable Magic Copy'),
+                        'label'         => __('Enable Magic Copy', 'live-copy-paste'),
                         'type'          => Controls_Manager::SWITCHER,
                         'return_value'  => 'yes',
                         'prefix_class'  => 'magic-button-enabled-',
@@ -50,7 +50,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                 $element->add_control(
                     'live_copy_paste_magic_btn_disable',
                     [
-                        'label'         => __('Disable Magic Copy'),
+                        'label'         => __('Disable Magic Copy', 'live-copy-paste'),
                         'type'          => Controls_Manager::SWITCHER,
                         'return_value'  => 'yes',
                         'prefix_class'  => 'magic-button-disabled-',
@@ -104,6 +104,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                     return;
                 }
                 $activation_url = wp_nonce_url('plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin);
+                /* translators: %1$s: opening strong tag, %2$s: closing strong tag */
                 $message = sprintf(esc_html__('Live Copy Paste requires %1$s"Elementor"%2$s plugin to be active. Please activate Elementor to continue.', 'live-copy-paste'), '<strong>', '</strong>');
                 $button_text = esc_html__('Activate Elementor', 'live-copy-paste');
             } else {
@@ -115,6 +116,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                     self_admin_url('update.php?action=install-plugin&plugin=elementor'),
                     'install-plugin_elementor'
                 );
+                /* translators: %1$s: opening strong tag, %2$s: closing strong tag */
                 $message = sprintf(esc_html__('Live Copy Paste requires %1$s"Elementor"%2$s plugin to be installed and activated. Please install Elementor to continue.', 'live-copy-paste'), '<strong>', '</strong>');
                 $button_text = esc_html__('Install Elementor', 'live-copy-paste');
             }
@@ -124,7 +126,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
 
             $button = '<p><a href="' . esc_url_raw($activation_url) . '" class="button-primary">' . esc_html($button_text) . '</a></p>';
 
-            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p>%2$s</div>', $message, $button);
+            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p>%2$s</div>', wp_kses_post($message), wp_kses_post($button));
         }
 
         public function bdt_lcp_notice_minimum_elementor_version() {
@@ -143,7 +145,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                 self::MINIMUM_ELEMENTOR_VERSION
             );
 
-            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message);
+            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post($message));
         }
 
         public function bdt_lcp_notice_minimum_php_version() {
@@ -162,7 +164,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
                 self::MINIMUM_PHP_VERSION
             );
 
-            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message);
+            printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post($message));
         }
 
 
@@ -245,7 +247,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
 
 
         function bdt_duplicator_section_callback() {
-            echo "<p>" . __('Settings for Live Copy Paste Duplicator Features', 'live-copy-paste') . "</p>";
+            echo "<p>" . esc_html__('Settings for Live Copy Paste Duplicator Features', 'live-copy-paste') . "</p>";
         }
         function bdt_duplicator_settings_content() {
             $options = get_option('bdt_enable_duplicator', 1);
@@ -253,7 +255,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
             $html = '<input type="checkbox" id="bdt_enable_duplicator" name="bdt_enable_duplicator" value="1"' . checked(1, $options, false) . '/>';
             $html .= '<label for="bdt_enable_duplicator">To enable Live Copy Paste Duplicator Feature make sure this input fields is checked</label>';
 
-            echo $html;
+            echo wp_kses_post($html);
         }
     }
 }
