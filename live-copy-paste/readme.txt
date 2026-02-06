@@ -1,15 +1,15 @@
 === Live Copy Paste for Elementor - Cross Domain Copy Paste & Page Duplicator ===
-Contributors: bdthemes, selimmw, mohammaadfarid, abutalib
+Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.4.12
+Stable tag: 1.4.15
 Requires PHP: 7.4.0
 Requires at least: 6.0
-Tested up to: 6.8.2
+Tested up to: 6.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Elementor requires at least: 3.22
-Elementor tested up to: 3.31.3
+Elementor requires at least: 3.28
+Elementor tested up to: 3.33.2
 
 The ultimate Elementor addon for cross-domain copying, magic copy buttons, and instant page duplication. Build websites faster with one-click design transfer!
 
@@ -18,6 +18,7 @@ The ultimate Elementor addon for cross-domain copying, magic copy buttons, and i
 ### 🎯 Transform Your Elementor Workflow with Live Copy Paste
 
 **Live Copy Paste** is the game-changing Elementor addon that revolutionizes how you build WordPress websites. Whether you're a freelancer managing multiple client sites, an agency working on diverse projects, or a developer streamlining your workflow, this plugin is your secret weapon for lightning-fast web design.
+
 
 ### ✨ Why Choose Live Copy Paste?
 
@@ -36,7 +37,7 @@ https://youtu.be/KWxbZfPIcqU
 ### 🚀 Perfect For:
 
 ✅ **Web Designers & Developers** - Transfer designs between staging and live sites effortlessly
-✅ **Digital Agencies** - Maintain consistency across multiple client websites  
+✅ **Digital Agencies** - Maintain consistency across multiple client websites
 ✅ **Freelancers** - Speed up project delivery with reusable design components
 ✅ **Content Creators** - Duplicate successful page layouts for A/B testing
 ✅ **WordPress Enthusiasts** - Build professional websites faster than ever
@@ -82,6 +83,22 @@ Live Copy Paste follows WordPress best practices, uses minimal resources, loads 
 Transform your Elementor workflow and build stunning websites in record time. Whether you're creating landing pages, business websites, or complex web applications, Live Copy Paste gives you the tools to work smarter, not harder.
 
 **Download now and experience the future of WordPress design workflow!**
+
+== Check out our other Addons 👑 ==
+
+Explore the best free addons for Elementor and Gutenberg to boost your site with advanced blocks, sliders and eCommerce tools.
+
+* **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Element Pack Lite Build responsive website from scratch with an all-rounder package for Elementor
+
+* **[Prime Slider](https://wordpress.org/plugins/bdthemes-prime-slider-lite/)** - The revolutionary slider builder addon for Elementor with next-gen superb interface.
+
+* **[Ultimate Post Kit](https://wordpress.org/plugins/ultimate-post-kit/)** - Best blogging addon for building quality blogging website with fine-tuned features and widgets.
+
+* **[Ultimate Store Kit](https://wordpress.org/plugins/ultimate-store-kit/)** - The only eCommmerce addon for answering all your online store design problems in one package.
+
+* **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor-based WordPress gallery addon that provides the easiest image gallery-making experience.
+
+* **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** 🆕☀️ - Mind-blowing dynamic block plugin for Gutenberg with powerful and advanced features offering greater web design experience.
 
 == Installation ==
 
@@ -159,6 +176,20 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 5. Advanced section controls for specific magic button targeting
 
 == Changelog ==
+
+= 1.4.15 [2nd December 2025] =
+
+* Updated: Made compatible with WordPress version 6.9
+
+= 1.4.14 [16th November 2025] =
+
+* Fixed: Security(Authorization) issue fixed ( Thanks to MD ISMAIL )
+
+* Updated: System Improved
+
+= 1.4.13 [19th October 2025] =
+
+* Added: New Magic Copy Functionality added for internal use.
 
 = 1.4.12 [11th September 2025] =
 
@@ -284,13 +315,3 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 
 = 1.3.0 =
 ⚠️ Important update: Legacy features deprecated in favor of improved Elementor integration. Please update for continued support.
-
-== 🎖️ Check out our other Premium Addons ==
-
-We appreciate your support of our best-seller products:
-
-1. Live Copy Paste Intro Banner
-2. How live copy paste works
-3. Core feature of live copy paste
-4. Easy way copy your site by live copy paste plugin
-5. Our other awesome plugins

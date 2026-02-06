@@ -19,7 +19,7 @@ if (!class_exists('BdThemes_Duplicator')) :
         public function bdt_duplicate_as_draft() {
             global $wpdb;
 
-            if (!current_user_can('edit_posts')) {
+            if (!current_user_can('publish_posts')) {
                 wp_die('You have not any permission to duplicate it, please go back!');
             }
 
@@ -144,13 +144,13 @@ if (!class_exists('BdThemes_Duplicator')) :
 
         public function bdt_duplicate_post_link($actions, $post) {
 
-            if ((current_user_can('edit_posts')) && ($post->post_type == 'post')) {
+            if ((current_user_can('publish_posts')) && ($post->post_type == 'post')) {
                 $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this post" rel="permalink">' . esc_html_x("Duplicate Post", "Admin String", "live-copy-paste") . '</a>';
             } else
-        if ((current_user_can('edit_posts')) && ($post->post_type == 'page')) {
+        if ((current_user_can('publish_pages')) && ($post->post_type == 'page')) {
                 $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this page" rel="permalink">' . esc_html_x("Duplicate Page", "Admin String", "live-copy-paste") . '</a>';
             } else
-        if ((current_user_can('edit_posts')) && ($post->post_type == 'elementor_library')) {
+        if ((current_user_can('publish_posts')) && ($post->post_type == 'elementor_library')) {
                 $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this template" rel="permalink">' . esc_html_x("Duplicate Template", "Admin String", "live-copy-paste") . '</a>';
             }
 

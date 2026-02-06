@@ -206,6 +206,7 @@ if (!class_exists('LiveCopyPasteLoader')) {
 
             if (isset($enable_magic_copy) && ($enable_magic_copy == 1) || isset($enable_magic_copy_specific_section) && ($enable_magic_copy_specific_section == 1)) {
                 require_once BDT_LCP_DIR . 'classes/class-live-copy-paste-magic-btn.php';
+                require_once BDT_LCP_DIR . 'classes/class-live-copy-paste-magic-btn-v2.php';
             }
             if (isset($enable_duplicator) == 1) {
                 require_once BDT_LCP_DIR . 'includes/duplicator/class-duplicator.php';
