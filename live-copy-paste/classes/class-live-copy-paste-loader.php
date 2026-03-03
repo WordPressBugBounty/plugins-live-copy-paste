@@ -244,6 +244,8 @@ if (!class_exists('LiveCopyPasteLoader')) {
             add_settings_section('bdt_duplicator_section', __('Live Copy Paste', 'live-copy-paste'), [$this, 'bdt_duplicator_section_callback'], 'general');
             add_settings_field('bdt_enable_duplicator', __('Enable Duplicator', 'live-copy-paste'), [$this, 'bdt_duplicator_settings_content'], 'general', 'bdt_duplicator_section');
             register_setting('general', 'bdt_enable_duplicator');
+
+            require_once BDT_LCP_DIR . 'includes/promotion/index.php';
         }
 
 
