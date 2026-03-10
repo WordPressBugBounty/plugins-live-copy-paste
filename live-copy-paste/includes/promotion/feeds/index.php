@@ -29,7 +29,7 @@ if ( ! class_exists( 'Admin_Feeds' ) ) {
 		public function bdt_admin_api_feed_scripts() {
 			$feeds_dir_url = plugin_dir_url(__FILE__);
 			wp_enqueue_style(
-				'lcp-admin-api-feeds',
+				'bdt-admin-api-feed',
 				$feeds_dir_url . 'style.css',
 				[],
 				'1.0.0'

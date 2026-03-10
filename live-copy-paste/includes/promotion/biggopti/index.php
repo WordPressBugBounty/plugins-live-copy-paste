@@ -35,7 +35,7 @@ if ( ! class_exists( 'BdtAdminApiBiggopties' ) ) {
 				true
 			);
 			wp_enqueue_style(
-				'lcp-admin-api-biggopti',
+				'bdt-admin-api-biggopti',
 				$bdt_admin_api_biggopti_dir_url . 'style.css',
 				[],
 				'1.0.0'
