@@ -21,11 +21,11 @@ if ( ! class_exists( 'BdtAdminApiBiggopties' ) ) {
 		}
 
 		public function __construct() {
-			add_action('wp_ajax_bdt_admin_api_biggopti_dismiss', [$this, 'bdt_admin_api_biggopti_dismiss']);
-			add_action('admin_enqueue_scripts', [$this, 'bdt_admin_api_biggopti_scripts']);
+			add_action('wp_ajax_lcp_admin_api_biggopti_dismiss', [$this, 'lcp_admin_api_biggopti_dismiss']);
+			add_action('admin_enqueue_scripts', [$this, 'lcp_admin_api_biggopti_scripts']);
 		}
 
-		public function bdt_admin_api_biggopti_scripts() {
+		public function lcp_admin_api_biggopti_scripts() {
 			$bdt_admin_api_biggopti_dir_url = plugin_dir_url(__FILE__);
 			wp_enqueue_script(
 				'lcp-admin-api-biggopti',
@@ -56,7 +56,7 @@ if ( ! class_exists( 'BdtAdminApiBiggopties' ) ) {
 			if ( isset( $_GET['page'] ) && $_GET['page'] === 'live_copy_paste_options' ) {
 				$current_sector = 'plugin_dashboard';
 			}
-			wp_localize_script('lcp-admin-api-biggopti', 'BdtAdminApiBiggoptiConfig', [
+			wp_localize_script('lcp-admin-api-biggopti', 'LiveCopyPasteBiggoptiConfig', [
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'nonce'    => wp_create_nonce('bdt-admin-api-biggopti'),
 				// 'isPro'             	=> function_exists('_is_lcp_pro_activated') && _is_lcp_pro_activated(),
@@ -70,7 +70,7 @@ if ( ! class_exists( 'BdtAdminApiBiggopties' ) ) {
 		/**
 		 * Dismiss Admin API Biggopti.
 		 */
-		public function bdt_admin_api_biggopti_dismiss() {
+		public function lcp_admin_api_biggopti_dismiss() {
 			$nonce = (isset($_POST['_wpnonce'])) ? sanitize_text_field($_POST['_wpnonce']) : '';
 			$display_id = (isset($_POST['display_id'])) ? sanitize_text_field($_POST['display_id']) : '';
 			$id   = (isset($_POST['id'])) ? esc_attr($_POST['id']) : '';
