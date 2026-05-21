@@ -2,14 +2,14 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 6.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Elementor requires at least: 3.28
-Elementor tested up to: 4.0.7
+Elementor tested up to: 4.0.9
 
 The ultimate Elementor addon for cross-domain copying, magic copy buttons, and instant page duplication. Build websites faster with one-click design transfer!
 
@@ -197,6 +197,10 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 5. Advanced section controls for specific magic button targeting
 
 == Changelog ==
+
+= 1.5.3 [21st May 2026] =
+
+* Updated: Made compatible with WordPress version 7.0
 
 = 1.5.2 [12th May 2026] =
 
