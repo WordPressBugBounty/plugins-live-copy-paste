@@ -7,8 +7,11 @@ if (! class_exists('LiveCopyPasteMagicBtn')) {
 	class LiveCopyPasteMagicBtn {
 		public function __construct() {
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_magic_btn_assets'));
-			add_action('wp_ajax_nopriv_live_copy_paste_magic_data_server_request', array($this, 'get_bdt_lcp_data'));
 			add_action('wp_ajax_live_copy_paste_magic_data_server_request', array($this, 'get_bdt_lcp_data'));
+
+			if (1 != get_option('lcp_enable_magic_copy_btn_login_user')) {
+				add_action('wp_ajax_nopriv_live_copy_paste_magic_data_server_request', array($this, 'get_bdt_lcp_data'));
+			}
 		}
 
 		public function enqueue_magic_btn_assets() {
@@ -71,37 +74,43 @@ if (! class_exists('LiveCopyPasteMagicBtn')) {
 		}
 
 		public function get_bdt_lcp_data() {
-			if (isset($_REQUEST)) {
-				$post_id   = sanitize_text_field($_REQUEST['post_id']);
-				$widget_id = sanitize_text_field($_REQUEST['widget_id']);
-				$nonce = wp_create_nonce('live-copy-paste-magic');
+			$post_id   = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']) : 0;
+			$widget_id = isset($_REQUEST['widget_id']) ? sanitize_text_field(wp_unslash($_REQUEST['widget_id'])) : '';
+			$nonce     = isset($_REQUEST['security']) ? sanitize_text_field(wp_unslash($_REQUEST['security'])) : '';
 
-				if (! wp_verify_nonce($nonce, 'live-copy-paste-magic')) {
-					wp_send_json_error(['message' => esc_html__('Sorry, invalid nonce!', 'live-copy-paste')]);
-				}
-
-				$result = $this->get_bdt_lcp_data_settings($post_id, $widget_id);
-
-				if (is_wp_error($result)) {
-					// Parse errors into a string and append as parameter to redirect
-					$errors = $result->get_error_message();
-					wp_send_json_error(['message' => $errors]);
-				} else {
-					// Success
-					define(
-						'plugin_dir_url()',
-						plugin_dir_url(__FILE__) . '/assets/'
-					);
-					$data = array(
-						'widget_data' => [
-							'widget' => $result['widget_data'],
-						],
-						'copy_data'   => $result['copy_data'],
-					);
-					wp_send_json_success($data);
-				}
-				wp_die();
+			if (!$post_id || !$widget_id || !wp_verify_nonce($nonce, 'live-copy-paste-magic-nonce')) {
+				wp_send_json_error(['message' => esc_html__('Sorry, invalid request!', 'live-copy-paste')]);
 			}
+
+			if (1 == get_option('lcp_enable_magic_copy_btn_login_user') && !is_user_logged_in()) {
+				wp_send_json_error(['message' => esc_html__('Authentication required.', 'live-copy-paste')]);
+			}
+
+			if (!$this->user_can_access_post($post_id)) {
+				wp_send_json_error(['message' => esc_html__('Sorry, you are not allowed to access this content.', 'live-copy-paste')]);
+			}
+
+			$result = $this->get_bdt_lcp_data_settings($post_id, $widget_id);
+
+			if (is_wp_error($result)) {
+				wp_send_json_error(['message' => $result->get_error_message()]);
+			}
+
+			$data = array(
+				'widget_data' => [
+					'widget' => $result['widget_data'],
+				],
+				'copy_data'   => $result['copy_data'],
+			);
+			wp_send_json_success($data);
+		}
+
+		private function user_can_access_post($post_id) {
+			if (current_user_can('edit_post', $post_id)) {
+				return true;
+			}
+
+			return is_post_publicly_viewable($post_id);
 		}
 
 		protected function get_bdt_lcp_data_settings($post_id, $widget_id) {

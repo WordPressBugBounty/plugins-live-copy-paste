@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, syedfarhanreza, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 6.9
@@ -198,6 +198,10 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 
 == Changelog ==
 
+= 1.5.4 [30th June 2026] =
+
+* Fixed: Broken access control vulnerability in magic copy AJAX handler (CVE-2025-63079, Thanks to Ismail)
+
 = 1.5.3 [21st May 2026] =
 
 * Updated: Made compatible with WordPress version 7.0
@@ -343,6 +347,9 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 * 📋 Basic duplication features
 
 == Upgrade Notice ==
+
+= 1.5.4 =
+Security update: fixes broken access control in magic copy requests. Update recommended for all users.
 
 = 1.4.9 =
 🚀 Enhanced Elementor 3.30.2 compatibility with improved cross-domain functionality. Update recommended for all users.

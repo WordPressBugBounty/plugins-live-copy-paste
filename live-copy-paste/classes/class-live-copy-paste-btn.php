@@ -27,7 +27,11 @@ if (!class_exists('LiveCopyPasteBtn')) {
             );
         }
         public function ajax_import_data() {
-            $nonce = isset($_REQUEST['security']) ? $_REQUEST['security'] : '';
+            if (!current_user_can('edit_posts')) {
+                wp_send_json_error(__('Sorry, you are not allowed to perform this action.', 'live-copy-paste'));
+            }
+
+            $nonce = isset($_REQUEST['security']) ? sanitize_text_field(wp_unslash($_REQUEST['security'])) : '';
             $data  = isset($_REQUEST['data']) ? wp_unslash(sanitize_text_field($_REQUEST['data'])) : '';
 
             if (!wp_verify_nonce($nonce, 'magic_copy_data') || empty($data)) {
