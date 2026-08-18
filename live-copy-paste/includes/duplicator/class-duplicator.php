@@ -19,29 +19,39 @@ if (!class_exists('BdThemes_Duplicator')) :
         public function bdt_duplicate_as_draft() {
             global $wpdb;
 
-            if (!current_user_can('publish_posts')) {
-                wp_die('You have not any permission to duplicate it, please go back!');
-            }
-
-            if (!(isset($_GET['post']) || isset($_POST['post']) || (isset($_REQUEST['action']) && 'bdt_duplicate_as_draft' == $_REQUEST['action']))) {
-                wp_die('No post to duplicate has been supplied!');
-            }
-
             /*
-        * Nonce verification
-        */
-            if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce($_GET['duplicate_nonce'], basename(__FILE__))) {
-                return;
-            }
-
-            /*
-         * get the original post id
+         * get the original post id first, the nonce and the capability checks
+         * below are both bound to it
          */
-            $bdt_post_id = (isset($_GET['post']) ? absint($_GET['post']) : absint($_POST['post']));
+            $bdt_post_id = isset($_GET['post']) ? absint($_GET['post']) : (isset($_POST['post']) ? absint($_POST['post']) : 0);
+
+            if (!$bdt_post_id) {
+                wp_die(esc_html__('No post to duplicate has been supplied!', 'live-copy-paste'));
+            }
+
+            /*
+        * Nonce verification. The nonce action carries the post id so a link
+        * issued for one post cannot be replayed against a different one.
+        */
+            $bdt_nonce = isset($_GET['duplicate_nonce']) ? sanitize_text_field(wp_unslash($_GET['duplicate_nonce'])) : '';
+
+            if (!wp_verify_nonce($bdt_nonce, 'bdt_duplicate_as_draft_' . $bdt_post_id)) {
+                wp_die(esc_html__('Security check failed, please go back and try again!', 'live-copy-paste'), '', ['response' => 403]);
+            }
+
             /*
          * and all the original post data then
          */
             $bdt_post = get_post($bdt_post_id);
+
+            /*
+         * The user must be allowed to edit this very post, not merely to publish
+         * posts in general, otherwise any author level user could duplicate - and
+         * so read - private or draft content owned by somebody else.
+         */
+            if (!$this->user_can_duplicate($bdt_post)) {
+                wp_die(esc_html__('You have not any permission to duplicate it, please go back!', 'live-copy-paste'), '', ['response' => 403]);
+            }
             /*
          * if you don't want current user to be the new post author,
          * then change next couple of lines to this: $new_post_author = $post->post_author;
@@ -142,17 +152,59 @@ if (!class_exists('BdThemes_Duplicator')) :
             }
         }
 
+        /*
+         * Post types this plugin is allowed to duplicate. The handler is reachable
+         * on its own, so it has to agree with the row action link.
+         */
+        private function get_duplicable_post_types() {
+            return ['post', 'page', 'elementor_library'];
+        }
+
+        private function user_can_duplicate($post) {
+            if (!$post instanceof WP_Post) {
+                return false;
+            }
+
+            if (!in_array($post->post_type, $this->get_duplicable_post_types(), true)) {
+                return false;
+            }
+
+            // Read side, the duplicate exposes the whole content and post meta.
+            if (!current_user_can('edit_post', $post->ID)) {
+                return false;
+            }
+
+            // Write side, the duplicate is a new post of the same type.
+            $bdt_post_type_object = get_post_type_object($post->post_type);
+
+            if (!$bdt_post_type_object) {
+                return false;
+            }
+
+            return current_user_can($bdt_post_type_object->cap->create_posts);
+        }
+
         public function bdt_duplicate_post_link($actions, $post) {
 
-            if ((current_user_can('publish_posts')) && ($post->post_type == 'post')) {
-                $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this post" rel="permalink">' . esc_html_x("Duplicate Post", "Admin String", "live-copy-paste") . '</a>';
-            } else
-        if ((current_user_can('publish_pages')) && ($post->post_type == 'page')) {
-                $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this page" rel="permalink">' . esc_html_x("Duplicate Page", "Admin String", "live-copy-paste") . '</a>';
-            } else
-        if ((current_user_can('publish_posts')) && ($post->post_type == 'elementor_library')) {
-                $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this template" rel="permalink">' . esc_html_x("Duplicate Template", "Admin String", "live-copy-paste") . '</a>';
+            if (!$this->user_can_duplicate($post)) {
+                return $actions;
             }
+
+            $bdt_labels = [
+                'post'              => _x('Duplicate Post', 'Admin String', 'live-copy-paste'),
+                'page'              => _x('Duplicate Page', 'Admin String', 'live-copy-paste'),
+                'elementor_library' => _x('Duplicate Template', 'Admin String', 'live-copy-paste'),
+            ];
+
+            $bdt_label = $bdt_labels[$post->post_type];
+
+            $bdt_url = wp_nonce_url(
+                'admin.php?action=bdt_duplicate_as_draft&post=' . $post->ID,
+                'bdt_duplicate_as_draft_' . $post->ID,
+                'duplicate_nonce'
+            );
+
+            $actions['duplicate'] = '<a href="' . esc_url($bdt_url) . '" title="' . esc_attr($bdt_label) . '" rel="permalink">' . esc_html($bdt_label) . '</a>';
 
             return $actions;
         }

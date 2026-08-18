@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.6
+Stable tag: 1.5.9
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 6.9
@@ -198,6 +198,20 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 
 == Changelog ==
 
+= 1.5.9 [18th August 2026] =
+
+* Removed: BdThemes news feed dashboard widget and all of its remote requests, transients, and styles
+
+= 1.5.8 [13th August 2026] =
+
+* Fixed: Broken access control in the post duplicator, where a user able to publish posts could duplicate - and so read - private or draft content owned by another user
+* Fixed: Duplicate links now use a nonce bound to the requested post, so a nonce issued for one post can no longer be replayed against another
+* Updated: Security improved
+
+= 1.5.7 [12th August 2026] =
+
+* Updated: System improved
+
 = 1.5.6 [10th August 2026] =
 
 * Updated: Admin API Biggopti removed
@@ -357,6 +371,9 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 * 📋 Basic duplication features
 
 == Upgrade Notice ==
+
+= 1.5.8 =
+Security update: fixes broken access control in the post duplicator. Update recommended for all users.
 
 = 1.5.4 =
 Security update: fixes broken access control in magic copy requests. Update recommended for all users.
