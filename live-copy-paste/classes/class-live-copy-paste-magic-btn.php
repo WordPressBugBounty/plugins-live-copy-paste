@@ -78,7 +78,20 @@ if (! class_exists('LiveCopyPasteMagicBtn')) {
 			$widget_id = isset($_REQUEST['widget_id']) ? sanitize_text_field(wp_unslash($_REQUEST['widget_id'])) : '';
 			$nonce     = isset($_REQUEST['security']) ? sanitize_text_field(wp_unslash($_REQUEST['security'])) : '';
 
-			if (!$post_id || !$widget_id || !wp_verify_nonce($nonce, 'live-copy-paste-magic-nonce')) {
+			if (!$post_id || !$widget_id) {
+				wp_send_json_error(['message' => esc_html__('Sorry, invalid request!', 'live-copy-paste')]);
+			}
+
+			/*
+			 * The nonce is printed into front end HTML, which a full page cache
+			 * hands to every logged out visitor for longer than the 24 hour nonce
+			 * lifetime, so the token is dead by the time the button is clicked.
+			 * For a logged out visitor it is no boundary anyway - it is derived
+			 * from user id 0 and an empty session token, so anybody can mint one -
+			 * user_can_access_post() below is what actually guards the content.
+			 * Enforce it where it still means something, on the logged in request.
+			 */
+			if (is_user_logged_in() && !wp_verify_nonce($nonce, 'live-copy-paste-magic-nonce')) {
 				wp_send_json_error(['message' => esc_html__('Sorry, invalid request!', 'live-copy-paste')]);
 			}
 

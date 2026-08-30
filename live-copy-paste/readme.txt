@@ -2,14 +2,14 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.9
+Stable tag: 1.5.10
 Requires PHP: 7.4.0
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Elementor requires at least: 3.28
-Elementor tested up to: 4.2.2
+Elementor requires at least: 4.0.0
+Elementor tested up to: 4.2.3
 
 The ultimate Elementor addon for cross-domain copying, magic copy buttons, and instant page duplication. Build websites faster with one-click design transfer!
 
@@ -198,6 +198,11 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 
 == Changelog ==
 
+= 1.5.10 [30th August 2026] =
+
+* Fixed: Live Copy button returning "Sorry, invalid request!" for logged out visitors on sites with a full page cache, where the cached page carried a nonce older than its 24 hour lifetime
+* Updated: Magic copy requests from logged out visitors no longer carry a nonce requirement, since a logged out nonce is derived from user id 0 and can be minted by anyone; the existing post access check remains in force
+
 = 1.5.9 [18th August 2026] =
 
 * Removed: BdThemes news feed dashboard widget and all of its remote requests, transients, and styles
@@ -371,6 +376,9 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 * 📋 Basic duplication features
 
 == Upgrade Notice ==
+
+= 1.5.10 =
+Fixes the Live Copy button for logged out visitors on cached sites. Update recommended if you serve cached pages to guests.
 
 = 1.5.8 =
 Security update: fixes broken access control in the post duplicator. Update recommended for all users.
