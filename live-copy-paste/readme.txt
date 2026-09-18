@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.10
+Stable tag: 1.5.11
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 7.1
@@ -198,6 +198,14 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 
 == Changelog ==
 
+= 1.5.11 [18th September 2026] =
+
+* Fixed: Second-order SQL injection in the post duplicator, where a contributor-level user could plant a custom field whose name contained a quote and then duplicate that post to execute arbitrary SQL (Thanks to Ananda Dhakal, Patchstack)
+* Fixed: Duplicating a post with no custom fields no longer runs a malformed INSERT
+* Fixed: Duplicating a post could end on a blank screen instead of the post list, where a redundant post type check skipped the redirect but not the exit that followed it
+* Updated: Duplicator redirect now uses wp_safe_redirect() and drops a redundant post type lookup
+* Updated: Security improved
+
 = 1.5.10 [30th August 2026] =
 
 * Fixed: Live Copy button returning "Sorry, invalid request!" for logged out visitors on sites with a full page cache, where the cached page carried a nonce older than its 24 hour lifetime
@@ -376,6 +384,9 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 * 📋 Basic duplication features
 
 == Upgrade Notice ==
+
+= 1.5.11 =
+Security update: fixes a SQL injection in the post duplicator reachable by any contributor-level user. Update recommended for all users.
 
 = 1.5.10 =
 Fixes the Live Copy button for logged out visitors on cached sites. Update recommended if you serve cached pages to guests.

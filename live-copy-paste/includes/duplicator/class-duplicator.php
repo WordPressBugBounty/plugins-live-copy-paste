@@ -103,21 +103,48 @@ if (!class_exists('BdThemes_Duplicator')) :
                 }
 
                 /*
-             * duplicate all post meta just in two SQL queries
+             * duplicate all post meta just in two SQL queries.
+             *
+             * Both the key and the value are read back out of wp_postmeta, so
+             * both are bound as placeholders rather than interpolated into the
+             * statement. A meta key is allowed to contain a single quote - core
+             * unslashes custom field names before storing them and only blocks
+             * the leading underscore - so interpolating one here breaks out of
+             * the string literal. That is a second order injection: the payload
+             * arrives from the database, never from the request, so request time
+             * slashing does not protect this sink.
              */
-                $bdt_post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$bdt_post_id");
+                $bdt_post_meta_infos = $wpdb->get_results(
+                    $wpdb->prepare("SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d", $bdt_post_id)
+                );
 
                 if (is_array($bdt_post_meta_infos)) {
-                    $bdt_sql_query     = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES ";
-                    $bdt_sql_query_sel = [];
+                    $bdt_sql_placeholders = [];
+                    $bdt_sql_values       = [];
 
                     foreach ($bdt_post_meta_infos as $bdt_meta_info) {
-                        $bdt_meta_value      = wp_slash($bdt_meta_info->meta_value);
-                        $bdt_sql_query_sel[] = "( $bdt_new_post_id, '{$bdt_meta_info->meta_key}', '{$bdt_meta_value}' )";
+                        $bdt_sql_placeholders[] = '( %d, %s, %s )';
+                        $bdt_sql_values[]       = $bdt_new_post_id;
+                        $bdt_sql_values[]       = $bdt_meta_info->meta_key;
+                        $bdt_sql_values[]       = $bdt_meta_info->meta_value;
                     }
 
-                    $bdt_sql_query .= implode(', ', $bdt_sql_query_sel) . ';';
-                    $wpdb->query($bdt_sql_query);
+                    /*
+                 * a post with no meta at all used to build "INSERT ... VALUES ;"
+                 * and run it, so only fire the query when there is a row
+                 */
+                    if (!empty($bdt_sql_placeholders)) {
+                        $bdt_sql_query = "INSERT INTO {$wpdb->postmeta} ( post_id, meta_key, meta_value ) VALUES " . implode(', ', $bdt_sql_placeholders);
+
+                        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- placeholders are generated above, every value is bound.
+                        $wpdb->query($wpdb->prepare($bdt_sql_query, $bdt_sql_values));
+
+                        /*
+                     * these rows went in behind the meta cache, drop the new
+                     * post's entry so nothing reads a stale empty set back
+                     */
+                        wp_cache_delete($bdt_new_post_id, 'post_meta');
+                    }
 
                     /*
                 * fix template type issues
@@ -131,20 +158,16 @@ if (!class_exists('BdThemes_Duplicator')) :
                 $css->update();
 
                 /*
-             * finally, redirect to the edit post screen for the new draft
+             * finally, redirect to the list screen for the duplicated post type.
+             *
+             * This used to walk every registered post type into a list and check
+             * membership first, which could only ever pass - user_can_duplicate()
+             * has already rejected anything that is not one of the duplicable
+             * types, and resolved its post type object. When it did not pass the
+             * redirect was skipped but the exit below still ran, leaving a blank
+             * page, so the check is gone rather than repaired.
              */
-
-                $bdt_all_post_types = get_post_types([], 'names');
-
-                foreach ($bdt_all_post_types as $bdt_key => $bdt_value) {
-                    $bdt_names[] = $bdt_key;
-                }
-
-                $bdt_current_post_type = get_post_type($bdt_post_id);
-
-                if (is_array($bdt_names) && in_array($bdt_current_post_type, $bdt_names)) {
-                    wp_redirect(admin_url('edit.php?post_type=' . $bdt_current_post_type));
-                }
+                wp_safe_redirect(admin_url('edit.php?post_type=' . $bdt_post->post_type));
 
                 exit;
             } else {
