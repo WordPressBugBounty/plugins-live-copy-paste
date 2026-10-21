@@ -2,7 +2,7 @@
 Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.11
+Stable tag: 1.5.12
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 7.1
@@ -197,6 +197,10 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 5. Advanced section controls for specific magic button targeting
 
 == Changelog ==
+
+= 1.5.12 [20th October 2026] =
+
+* Added: BdThemes deals notice on the Dashboard, Plugins screen and plugin dashboard; “Don’t Show Again” hides it in every BdThemes plugin
 
 = 1.5.11 [18th September 2026] =
 
