@@ -4,7 +4,7 @@
  * Plugin Name: Live Copy Paste
  * Plugin URI: https://bdthemes.com/live-copy-paste/
  * Description: By using this plugin, you can easily import/paste all sections on your site from the Elementor Editor/Widget Demo/Ready-Made Pages and Blocks. One click to change the world.
- * Version: 1.5.12
+ * Version: 1.5.13
  * Author: BdThemes
  * Author URI: https://bdthemes.com/
  * Text Domain: live-copy-paste
@@ -24,7 +24,7 @@ if ( is_admin() ) {
 }
 
 
-define( 'BDT_LCP_VER', '1.5.12' );
+define( 'BDT_LCP_VER', '1.5.13' );
 
 require_once 'classes/class-live-copy-paste-loader.php';
 

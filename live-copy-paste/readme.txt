@@ -1,8 +1,8 @@
 === Live Copy Paste for Elementor - Cross Domain Copy Paste & Page Duplicator ===
-Contributors: bdthemes, selimmw, mohammaadfarid, abutalib, maudud, muhammadasik, arafatakashakku, shmusuf
+Contributors: bdthemes, selimmw, maudud, abutalib, arafatakashakku, shamim496
 Donate link: http://bdthemes.com/
 Tags: elementor copy paste, cross domain, page duplicator, elementor addon, website builder
-Stable tag: 1.5.12
+Stable tag: 1.5.13
 Requires PHP: 7.4.0
 Requires at least: 6.0
 Tested up to: 7.1
@@ -197,6 +197,10 @@ First, ensure both sites have Live Copy Paste activated and you're using a compa
 5. Advanced section controls for specific magic button targeting
 
 == Changelog ==
+
+= 1.5.13 [19th November 2026] =
+
+* Updated: System improved
 
 = 1.5.12 [20th October 2026] =
 
